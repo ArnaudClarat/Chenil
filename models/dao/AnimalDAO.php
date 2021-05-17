@@ -7,9 +7,9 @@ class AnimalDAO extends AbstractDAO {
         parent::__construct('animals', 'aniId');
     }
 
-    public function user ($user_id) {
+    public function user ($useId) {
 
-        return $this->belongsTo(new UserDAO(), $user_id);
+        return $this->belongsTo(new UserDAO(), $useId);
     }
 
     //instancie un objet
