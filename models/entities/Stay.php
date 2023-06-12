@@ -1,30 +1,16 @@
 <?php
 
-
-class Stay
-{
+class Stay extends AbstractEntity {
     private $id;
     private $dateIn;
     private $dateOut;
     private $animal;
+    protected static $dao = "StayDAO";
 
-    public function __construct ($id, $dateIn, $dateOut, $animal){
+    public function __construct ($dateIn, $dateOut, $animal, $id = false) {
         $this->id = $id;
         $this->dateIn = $dateIn;
         $this->dateOut = $dateOut;
         $this->animal = $animal;
-    }
-
-    public function __get ($prop) {
-        if (property_exists($this, $prop)) {
-            return $this->$prop;
-        }
-        return "No property ";
-    }
-
-    public function __set ($prop, $value) {
-        if (property_exists($this, $prop)) {
-            $this->$prop = $value;
-        }
     }
 }

@@ -1,28 +1,14 @@
 <?php
 
-
-class Vaccine
-{
+class Vaccine extends AbstractEntity {
     private $id;
     private $name;
     private $description;
+    protected static $dao = "VaccineDAO";
 
-    public function __construct ($id, $name, $description){
+    public function __construct ($name, $description, $id = false){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
-    }
-
-    public function __get ($prop) {
-        if (property_exists($this, $prop)) {
-            return $this->$prop;
-        }
-        return "No property ";
-    }
-
-    public function __set ($prop, $value) {
-        if (property_exists($this, $prop)) {
-            $this->$prop = $value;
-        }
     }
 }

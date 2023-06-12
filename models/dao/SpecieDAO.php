@@ -1,6 +1,6 @@
 <?php
 
-class SpeciesDAO extends AbstractDAO {
+class SpecieDAO extends AbstractDAO {
     public function __construct()
     {
         parent::__construct('species', 'speId');

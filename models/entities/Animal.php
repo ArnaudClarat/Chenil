@@ -1,39 +1,24 @@
 <?php
 
-class Animal {
-    private $id;
+class Animal extends AbstractEntity {
+    private $puce;
     private $name;
     private $sex;
     private $steril;
     private $dob;
-    private $puce;
-    private $user;
+    private $owner;
     private $race;
     private $specie;
+    protected static $dao = "AnimalDAO";
 
-    public function __construct ($id, $name, $sex, $steril, $dob, $puce, $user, $race, $specie) {
-        $this->id = $id;
+    public function __construct ($puce, $name, $sex, $steril, $dob, $owner, $race, $specie) {
+        $this->puce = $puce;
         $this->name = $name;
         $this->sex = $sex;
         $this->steril = $steril;
         $this->dob = $dob;
-        $this->puce = $puce;
-        $this->user = $user;
+        $this->owner = $owner;
         $this->race = $race;
         $this->specie = $specie;
-    }
-
-
-    public function __get ($prop) {
-        if (property_exists($this, $prop)) {
-            return $this->$prop;
-        }
-        return "No property ";
-    }
-
-    public function __set ($prop, $value) {
-        if(property_exists($this, $prop)) {
-            $this->$prop = $value;
-        }
     }
 }

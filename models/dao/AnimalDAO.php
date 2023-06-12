@@ -3,84 +3,50 @@
 class AnimalDAO extends AbstractDAO {
 
     public function __construct () {
-        //appelle le constructeur du parent (AbstractDAO)
-        parent::__construct('animals', 'aniId');
+        parent::__construct('animals');
     }
-
-    public function user ($useId) {
-
-        return $this->belongsTo(new UserDAO(), $useId);
-    }
-
+    
     //instancie un objet
     function create ($result) {
-        return new Animal(
-            $result['id'],
+        return empty($data["puce"]) ? false : new Animal(
             $result['name'],
             $result['sex'],
             $result['steril'],
             $result['dob'],
-            $result['puce'],
-            $result['user'],
-            $result['race'],
-            $result['specie']
+            $result['owner_id'],
+            $result['race_id'],
+            $result['specie_id'],
+            $result['puce'] ?? false
         );
     }
 
-    function delete ($data) {
-        if(empty($data['id'])) {
-            return false;
-        }
-
-        try {
-            $statement = $this->connection->prepare("DELETE FROM {$this->table} WHERE {$this->primaryKey} = ?");
-            $statement->execute([
-                $data['id']
-            ]);
-        } catch(PDOException $e) {
-            print $e->getMessage();
-        }
+    //bla bla bla
+    function store ($animal) {
+        return parent::insert(
+            $this->db->prepare(
+                "INSERT INTO {$this->table} (name, sex, steril, DOB, owner_id, race_id, specie_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+                    htmlspecialchars($animal->name),
+                    htmlspecialchars($animal->sex),
+                    htmlspecialchars($animal->steril),
+                    htmlspecialchars($animal->dob),
+                    htmlspecialchars($animal->owner->id),
+                    htmlspecialchars($animal->race->id),
+                    htmlspecialchars($animal->specie->id)
+                ], $animal));
     }
 
-    function store ($data) {
-        if(empty($data['name']) || empty($data['sex']) || empty($data['dob'])) {
-            return false;
+    public function update($pokemon) {
+        return parent::insert(
+            $this->db->prepare(
+                "UPDATE {$this->table} SET (name, sex, steril, DOB, owner_id, race_id, specie_id) = (?, ?, ?, ?, ?, ?, ?) WHERE puce = ?"), [
+                    htmlspecialchars($animal->name),
+                    htmlspecialchars($animal->sex),
+                    htmlspecialchars($animal->steril),
+                    htmlspecialchars($animal->dob),
+                    htmlspecialchars($animal->owner->id),
+                    htmlspecialchars($animal->race->id),
+                    htmlspecialchars($animal->specie->id),
+                    htmlspecialchars($animal->puce)
+                ], $pokemon);
         }
-
-        $animal = $this->create(
-            [
-                'id'=> 0,
-                'name'=> $data['name'],
-                'sex'=>$data['sex'],
-                'steril'=>$data['steril'],
-                'dob'=>$data['dob'],
-                'puce'=>$data['puce'],
-                'user'=>$data['user'],
-                'race'=>$data['race'],
-                'specie'=>$data['specie']
-            ]
-        );
-
-        if ($animal) {
-            try {
-                $statement = $this->connection->prepare(
-                    "INSERT INTO {$this->table} (aniName, aniSex, anisteril, aniDOB, aniPuce, aniUseId, aniRacId, aniSpeId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-                );
-                $statement->execute([
-                    htmlspecialchars($animal->__get('name')),
-                    htmlspecialchars($animal->__get('sex')),
-                    htmlspecialchars($animal->__get('steril')),
-                    htmlspecialchars($animal->__get('dob')),
-                    htmlspecialchars($animal->__get('puce')),
-                    htmlspecialchars($animal->__get('user')),
-                    htmlspecialchars($animal->__get('race')),
-                    htmlspecialchars($animal->__get('specie'))
-                ]);
-                return true;
-            } catch(PDOException $e) {
-                print $e->getMessage();
-                return false;
-            }
-        }
-    }
 }

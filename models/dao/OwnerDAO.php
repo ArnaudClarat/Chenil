@@ -1,12 +1,12 @@
 <?php
 
-class UserDAO extends AbstractDAO {
+class OwnerDAO extends AbstractDAO {
     public function __construct() {
         parent::__construct('users', 'useId');
     }
 
     public function create ($result) {
-        return new User(
+        return new Owner(
             $result['id'],
             $result['name'],
             $result['forename'],

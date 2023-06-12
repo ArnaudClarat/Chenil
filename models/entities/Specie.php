@@ -1,9 +1,9 @@
 <?php
 
-class Race extends AbstractEntity {
+class Specie extends AbstractEntity {
     private $id;
     private $name;
-    protected static $dao = "RaceDAO";
+    protected static $dao = "SpecieDAO";
 
     public function __construct ($name, $id = false) {
         $this->id = $id;
