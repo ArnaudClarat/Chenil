@@ -1,8 +1,8 @@
 <?php
 
 class Specie extends AbstractEntity {
-    private $id;
-    private $name;
+    protected $id;
+    protected $name;
     protected static $dao = "SpecieDAO";
 
     public function __construct ($name, $id = false) {

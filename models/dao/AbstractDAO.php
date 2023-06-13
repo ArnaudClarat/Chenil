@@ -15,7 +15,7 @@ abstract class AbstractDAO implements DAOInterface {
         $host = DB_HOST;
         $user = DB_USER;
         $pass = DB_PASS;
-        $this->db = new PDO("mysql:host={$host};dbname=chenil", "$user", "$pass");
+        $this->db = new PDO("mysql:host={$host};dbname=kennel", "$user", "$pass");
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

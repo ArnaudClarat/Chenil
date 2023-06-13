@@ -1,8 +1,8 @@
 <?php
 
 class Race extends AbstractEntity {
-    private $id;
-    private $name;
+    protected $id;
+    protected $name;
     protected static $dao = "RaceDAO";
 
     public function __construct ($name, $id = false) {

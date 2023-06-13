@@ -2,17 +2,17 @@
 
 class OwnerDAO extends AbstractDAO {
     public function __construct() {
-        parent::__construct('users', 'useId');
+        parent::__construct('owners', 'id');
     }
 
     public function create ($result) {
         return new Owner(
-            $result['id'],
             $result['name'],
             $result['forename'],
-            $result['dob'],
+            $result['DOB'],
             $result['mail'],
-            $result['phone']
+            $result['tel'],
+            $result['id']
         );
     }
 }

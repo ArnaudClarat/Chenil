@@ -7,20 +7,19 @@ class AnimalDAO extends AbstractDAO {
     }
     
     //instancie un objet
-    function create ($result) {
+    function create ($data) {
         return empty($data["puce"]) ? false : new Animal(
-            $result['name'],
-            $result['sex'],
-            $result['steril'],
-            $result['dob'],
-            $result['owner_id'],
-            $result['race_id'],
-            $result['specie_id'],
-            $result['puce'] ?? false
+            $data['puce'],
+            $data['name'],
+            $data['sex'],
+            $data['steril'],
+            $data['DOB'],
+            $data['owner_id'],
+            $data['race_id'],
+            $data['specie_id']
         );
     }
 
-    //bla bla bla
     function store ($animal) {
         return parent::insert(
             $this->db->prepare(

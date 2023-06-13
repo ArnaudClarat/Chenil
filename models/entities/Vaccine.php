@@ -1,9 +1,9 @@
 <?php
 
 class Vaccine extends AbstractEntity {
-    private $id;
-    private $name;
-    private $description;
+    protected $id;
+    protected $name;
+    protected $description;
     protected static $dao = "VaccineDAO";
 
     public function __construct ($name, $description, $id = false){

@@ -1,12 +1,12 @@
 <?php
 
 class Owner extends AbstractEntity {
-    private $id;
-    private $name;
-    private $forename;
-    private $dob;
-    private $mail;
-    private $phone;
+    protected $id;
+    protected $name;
+    protected $forename;
+    protected $dob;
+    protected $mail;
+    protected $phone;
     protected static $dao = "OwnerDAO";
 
     public function __construct ($name, $forename, $dob, $mail, $phone, $id = false) {
