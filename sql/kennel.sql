@@ -58,8 +58,8 @@ CREATE TABLE `species` (
 --
 
 INSERT INTO `species` (`id`, `name`) VALUES
-(1, 'Chiens'),
-(2, 'Chats');
+(1, 'Chien'),
+(2, 'Chat');
 COMMIT;
 
 -- -------------------------------------------------------
@@ -84,7 +84,9 @@ CREATE TABLE `owners` (
 --
 
 INSERT INTO `owners` (`id`, `name`, `forename`, `DOB`, `mail`, `tel`) VALUES
-(1, 'Clarat', 'Arnaud', '1997-07-14', 'arnaud.clarat@ifosup.wavre.be', '+3210222026');
+(1, 'Clarat', 'Arnaud', '1997-07-14', 'arnaud.clarat@ifosup.wavre.be', '+3210222026'),
+(2, 'Delbar', 'Benjamin', '1853-05-15', 'benjamin.delbar@ifosup.wavre.be', '+3210222026'),
+(3, 'Verheyen', 'Raphaël', '1751-10-19', 'raphael.verheyen@ifosup.wavre.be', '+3210222026');
 
 -- --------------------------------------------------------
 
@@ -112,8 +114,12 @@ CREATE TABLE `animals` (
 -- Déchargement des données de la table `animals`
 --
 
-INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `owner_id`, `race_id`, `specie_id`) VALUES
-(1, 'Bubulle', 'F', 1, '2001-06-13', 1, 2, 5);
+INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `owner_id`, `specie_id`, `race_id`) VALUES
+(1, 'Bubulle', 'F', 1, '2001-06-13', 1, 2, 5),
+(2, 'Rocco', 'M', 1, '2012-03-06', 2, 1, 2),
+(3, 'Sifredi', 'F', 0, '2015-08-29', 2, 1, 1),
+(4, 'Felix', 'M', 1, '2021-12-28', 3, 2, 4),
+(5, 'Rex', 'M', 1, '2005-11-25', 3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -129,37 +135,6 @@ CREATE TABLE `stay` (
   `animal_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`animal_id`) REFERENCES animals(`puce`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `vaccines`
---
-
-DROP TABLE IF EXISTS `vaccines`;
-CREATE TABLE `vaccines` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `vaccinesanimals`
---
-
-DROP TABLE IF EXISTS `vaccinesanimals`;
-CREATE TABLE `vaccinesanimals` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vaccine_id` int(11) NOT NULL,
-  `animal_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`vaccine_id`) REFERENCES vaccines(`id`),
-  FOREIGN KEY (`animal_id`) REFERENCES animals(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 
