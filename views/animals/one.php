@@ -13,19 +13,19 @@
 	<li>Date de naissance : <?= $entity->dob; ?></li>
 	<li>
 		Propriétaire : 
-		<button class="xhr show" _id="<?= $entity->owner->id; ?>">
+		<button class="xhr owner show" _id="<?= $entity->owner->id; ?>">
 		   	<?= $entity->owner->name.' '.$entity->owner->forename; ?>
 		</button>
 	</li>
 	<li>
 		Espèce : 
-		<button class="xhr show" _id="<?= $entity->specie->id; ?>">
+		<button class="xhr specie show" _id="<?= $entity->specie->id; ?>">
 			<?= $entity->specie->name; ?>
 		</button>
 	</li>
 	<li>
 		Race : 
-		<button class="xhr show" _id="<?= $entity->race->id; ?>">
+		<button class="xhr race show" _id="<?= $entity->race->id; ?>">
 			<?= $entity->race->name; ?>
 		</button>
 	</li>

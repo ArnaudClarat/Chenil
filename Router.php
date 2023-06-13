@@ -21,15 +21,15 @@ class Router {
         //tableau associatif pour définir une correspondance URL <-> Controller
         $this->routes = [
             "/" => "AnimalController",
-            "animals" => "AnimalController"
-            // "teachers" => "TeacherController"
+            "animals" => "AnimalController",
+            "owners" => "OwnerController"
         ];
         
         //liste des actions autorisées
         $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy"];
         
         $this->analyze(); 
-        //$this->debug();
+        $this->debug();
         $this->run();
     }
     

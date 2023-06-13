@@ -11,14 +11,14 @@
 		    <tbody>
 		        <?php foreach($entities as $animal): ?>
 		            <tr>
-		                <td><button class="xhr show" _id="<?= $animal->puce; ?>"><?= $animal->name; ?></button></td>
-		                <td><button class="xhr show" _id="<?= $animal->owner->id; ?>">
+		                <td><button class="xhr animal show" _id="<?= $animal->puce; ?>"><?= $animal->name; ?></button></td>
+		                <td><button class="xhr owner show" _id="<?= $animal->owner->id; ?>">
 		                	<?= $animal->owner->name.' '.$animal->owner->forename; ?>
 		                </button></td>
-		                <td><button class="xhr show" _id="<?= $animal->puce; ?>">Stays</button>
+		                <td><button class="xhr stay show" _id="<?= $animal->puce; ?>">Stays</button>
 		                <td>
-		                	<button class="xhr delete" _id="<?= $animal->puce; ?>">Delete</button>
-		                	<button class="xhr edit" _id="<?= $animal->puce; ?>">Edit</button>
+		                	<button class="xhr animal delete" _id="<?= $animal->puce; ?>">Delete</button>
+		                	<button class="xhr animal edit" _id="<?= $animal->puce; ?>">Edit</button>
 		                </td>
 		            </tr>
 		        <?php endforeach; ?>
