@@ -25,6 +25,10 @@ class Animal extends AbstractEntity {
     public function __get($prop) {
         if ($prop == "owner") {
             return $this->owner();
+        } elseif ($prop == "specie") {
+            return $this->specie();
+        } elseif ($prop == "race") {
+            return $this->race();
         } elseif (property_exists($this, $prop)) {
             return $this->$prop;
         }
@@ -32,5 +36,13 @@ class Animal extends AbstractEntity {
 
     public function owner() {
         return $this->belongsTo(Owner::class, "owner");
+    }
+
+    public function specie() {
+        return $this->belongsTo(Specie::class, "specie");
+    }
+
+    public function race() {
+        return $this->belongsTo(Race::class, "race");
     }
 }

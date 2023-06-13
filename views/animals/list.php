@@ -16,7 +16,10 @@
 		                	<?= $animal->owner->name.' '.$animal->owner->forename; ?>
 		                </button></td>
 		                <td><button class="xhr show" _id="<?= $animal->puce; ?>">Stays</button>
-		                <td><button class="xhr delete" _id="<?= $animal->puce; ?>">Delete</button></td>
+		                <td>
+		                	<button class="xhr delete" _id="<?= $animal->puce; ?>">Delete</button>
+		                	<button class="xhr edit" _id="<?= $animal->puce; ?>">Edit</button>
+		                </td>
 		            </tr>
 		        <?php endforeach; ?>
 		    </tbody>

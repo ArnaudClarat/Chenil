@@ -7,9 +7,9 @@ class SpecieDAO extends AbstractDAO {
     }
 
     function create ($result) {
-        return new Species(
-            $result['id'],
-            $result['name']
+        return new Specie(
+            $result['name'],
+            $result['id']
         );
     }
 }

@@ -15,8 +15,8 @@ class AnimalDAO extends AbstractDAO {
             $data['steril'],
             $data['DOB'],
             $data['owner_id'],
-            $data['race_id'],
-            $data['specie_id']
+            $data['specie_id'],
+            $data['race_id']
         );
     }
 
@@ -47,5 +47,21 @@ class AnimalDAO extends AbstractDAO {
                     htmlspecialchars($animal->specie->id),
                     htmlspecialchars($animal->puce)
                 ], $pokemon);
+    }
+
+    //Récupération d'un animal par son numéro de puce
+    public function fetch($id) {
+        $statement = $this->db->prepare("SELECT * FROM {$this->table} WHERE puce = ?");
+        try {
+            $statement->execute([$id]);
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $this->create($result);
+            }
+            return false;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+            return false;
         }
+    }    
 }

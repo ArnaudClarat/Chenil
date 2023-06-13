@@ -8,8 +8,8 @@ class RaceDAO extends AbstractDAO {
 
     function create ($result) {
         return new Race(
-            $result['id'],
-            $result['name']
+            $result['name'],
+            $result['id']
         );
     }
 }

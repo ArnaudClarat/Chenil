@@ -21,7 +21,7 @@ class Router {
         //tableau associatif pour définir une correspondance URL <-> Controller
         $this->routes = [
             "/" => "AnimalController",
-            "pokemon" => "¨AnimalController"
+            "animals" => "AnimalController"
             // "teachers" => "TeacherController"
         ];
         
@@ -39,7 +39,7 @@ class Router {
         //Si pas de controlleur on part sur une 404
         if (!$this->detect_controller()) {
             http_response_code(404);
-            var_dump('Not found');
+            print 'Not found';
             die();
         }
         

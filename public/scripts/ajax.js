@@ -13,7 +13,7 @@ $(document).ready(function() {
 	});
 
 	function show (id) {
-		$.get("show", {id: id})
+		$.get("/animals/"+id)
 		.done(function(result) {
 			$('.content').html(result);
 		})
