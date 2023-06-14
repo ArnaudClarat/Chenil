@@ -22,7 +22,9 @@ class Router {
         $this->routes = [
             "/" => "AnimalController",
             "animals" => "AnimalController",
-            "owners" => "OwnerController"
+            "owners" => "OwnerController",
+            "races" => "RaceController",
+            "species" => "SpecieController"
         ];
         
         //liste des actions autorisées

@@ -10,6 +10,12 @@ $(document).ready(function() {
 			case $(this).hasClass('owner'):
 				entity = 'owners';
 				break;
+			case $(this).hasClass('specie'):
+				entity = 'species';
+				break;
+			case $(this).hasClass('race'):
+				entity = 'races';
+				break;
 		}
 
 
