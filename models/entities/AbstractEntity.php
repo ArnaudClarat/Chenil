@@ -71,7 +71,7 @@ abstract class AbstractEntity implements EntityInterface{
     }
     
     public static function where ($attr, $value) {
-        return (new static::$dao)->where($attr, $value);
+        return (new static::$dao)->fetchWhere($attr, $value);
     }
     
     public static function first ($attr, $value) {

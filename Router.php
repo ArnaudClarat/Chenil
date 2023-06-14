@@ -31,7 +31,7 @@ class Router {
         $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy"];
         
         $this->analyze(); 
-        $this->debug();
+        //$this->debug();
         $this->run();
     }
     
