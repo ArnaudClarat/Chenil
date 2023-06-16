@@ -18,26 +18,27 @@ class Router {
         $this->get = $_GET;
         $this->data = count($this->post) ? $this->post : $this->get;
         
+
         //tableau associatif pour définir une correspondance URL <-> Controller
         $this->routes = [
             "/" => "AnimalController",
             "animals" => "AnimalController",
             "owners" => "OwnerController",
             "races" => "RaceController",
-            "species" => "SpecieController"
+            "species" => "SpecieController",
+            "stays" => "StayController"
         ];
         
         //liste des actions autorisées
         $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy"];
         
         $this->analyze(); 
-        //$this->debug();
+        $this->debug();
         $this->run();
     }
     
     private function analyze () {
-        $this->clean_url();
-        
+        $this->clean_url();  
         //Si pas de controlleur on part sur une 404
         if (!$this->detect_controller()) {
             http_response_code(404);
@@ -53,8 +54,10 @@ class Router {
         $this->detect_action();
         if ($this->action == "list" && $this->id) {
             $this->action = "show";
-        } else if ($this->action == "list" && !empty($_POST)) {
+        } else if ($this->action == "store" && !empty($_POST)) {
             $this->action = "store";
+        } else {
+            $this->action = "list";
         }
         
     }

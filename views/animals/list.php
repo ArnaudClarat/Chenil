@@ -15,7 +15,7 @@
 		                <td><button class="xhr owner show" _id="<?= $animal->owner->id; ?>">
 		                	<?= $animal->owner->name.' '.$animal->owner->forename; ?>
 		                </button></td>
-		                <td><button class="xhr stay show" _id="<?= $animal->puce; ?>">Stays</button>
+		                <td><button class="xhr stays show" _id="<?= $animal->puce; ?>">Stays</button>
 		                <td>
 		                	<button class="xhr animal delete" _id="<?= $animal->puce; ?>">Delete</button>
 		                	<button class="xhr animal edit" _id="<?= $animal->puce; ?>">Edit</button>

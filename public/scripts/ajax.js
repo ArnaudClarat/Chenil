@@ -16,6 +16,9 @@ $(document).ready(function() {
 			case $(this).hasClass('race'):
 				entity = 'races';
 				break;
+			case $(this).hasClass('stays'):
+				entity = 'stays';
+				break;
 		}
 
 
