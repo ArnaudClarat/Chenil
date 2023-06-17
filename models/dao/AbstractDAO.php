@@ -58,8 +58,8 @@ abstract class AbstractDAO implements DAOInterface {
 
     //Récupération d'une entité par son id
     public function fetch($id) {
-        $statement = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = ?");
         try {
+            $statement = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = ?");
             $statement->execute([$id]);
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             if ($result) {
