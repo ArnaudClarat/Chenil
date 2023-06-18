@@ -17,8 +17,8 @@
 		                </button></td>
 		                <td><button class="xhr stays show" _id="<?= $animal->puce; ?>">Stays</button>
 		                <td>
-		                	<button class="xhr animal delete" _id="<?= $animal->puce; ?>">Delete</button>
 		                	<button class="xhr animal edit" _id="<?= $animal->puce; ?>">Edit</button>
+		                	<button class="xhr animal delete" _id="<?= $animal->puce; ?>">Delete</button>
 		                </td>
 		            </tr>
 		        <?php endforeach; ?>
