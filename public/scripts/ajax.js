@@ -6,7 +6,6 @@ $(document).ready(function() {
 		switch (true) {
 			case $(this).hasClass('animal'):
 				entity = 'animals';
-				console.log(entity);
 				break;
 			case $(this).hasClass('owner'):
 				entity = 'owners';
@@ -24,8 +23,7 @@ $(document).ready(function() {
 
 
 		if ($(this).hasClass('edit')) {
-			console.log(id);
-			return edit(entity, id);
+			return mod(entity, id);
 		} else if ($(this).hasClass('create')) {
 			return create(entity); 
 		} else if ($(this).hasClass('show')) {
@@ -44,11 +42,10 @@ $(document).ready(function() {
 		});
 	};
 
-	function edit (entity, id) {
+	function mod(entity, id) {
 		$.get("/"+entity+"/"+id+"/edit")
 		.done(function(result) {
-			console.log('done')
-			$('content').html(result);
+			$('.content').html(result);
 		})
 		.fail(function(err) {
 			console.warn('error in edit', err);

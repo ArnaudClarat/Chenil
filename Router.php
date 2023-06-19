@@ -18,7 +18,6 @@ class Router {
         $this->get = $_GET;
         $this->data = count($this->post) ? $this->post : $this->get;
         
-        var_dump($url);
         //tableau associatif pour définir une correspondance URL <-> Controller
         $this->routes = [
             "/" => "AnimalController",
@@ -33,13 +32,12 @@ class Router {
         $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy"];
         
         $this->analyze(); 
-        $this->debug();
+        //$this->debug();
         $this->run();
     }
     
     private function analyze () {
-        $this->clean_url();
-        var_dump($this->url);  
+        $this->clean_url();  
         //Si pas de controlleur on part sur une 404
         if (!$this->detect_controller()) {
             http_response_code(404);
@@ -55,6 +53,8 @@ class Router {
         $this->detect_action();
         if ($this->action == "list" && $this->id) {
             $this->action = "show";
+        } else if ($this->action == "edit" && $this->id) {
+            $this->action = "edit";
         } else if ($this->action == "store" && !empty($_POST)) {
             $this->action = "store";
         } else {
@@ -89,11 +89,12 @@ class Router {
     }
     
     private function detect_id () {
-        if (isset($this->url[0])) 
+        if (isset($this->url[0])) {
             if(is_numeric($this->url[0])) {
                 return $this->id = $this->url[0];
             }
         return false;
+        }
     }
     
     private function detect_action () {
