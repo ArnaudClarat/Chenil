@@ -32,6 +32,19 @@ $(document).ready(function() {
 		return destroy(entity, id); 
 	});
 
+	$('body').on('change', 'select#specie', function () {
+		$('select#race').find('option:selected').removeAttr('selected');
+		$.get("/races/"+$(this).find('option:selected').val()+"/where")
+		.done(function(result) {
+			result = JSON.parse(result);
+			$('select#race').find('option').attr('disabled', 'disabled');
+			for (let r in result) {				
+				$opt = $('select#race').find('option[value="'+result[r]+'"]');
+ 				$opt.removeAttr('disabled');
+ 			}			
+		})
+	})
+
 	function show (entity, id) {
 		$.get("/"+entity+"/"+id)
 		.done(function(result) {

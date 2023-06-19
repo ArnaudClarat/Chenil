@@ -18,9 +18,9 @@
 		</button>
 	</li>
 	<li>
-		Espèce : 
-		<button class="xhr specie show" _id="<?= $entity->specie->id; ?>">
-			<?= $entity->specie->name; ?>
+		Espèce :
+		<button class="xhr specie show" _id="<?= $entity->race->specie->id; ?>">
+			<?= $entity->race->specie->name; ?>
 		</button>
 	</li>
 	<li>

@@ -9,6 +9,7 @@ class RaceDAO extends AbstractDAO {
     function create ($result) {
         return new Race(
             $result['name'],
+            $result['specie_id'],
             $result['id']
         );
     }

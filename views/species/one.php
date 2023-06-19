@@ -2,7 +2,7 @@
 <ul>
 	<li>Animaux :</li>
 	<ul>
-		<?php foreach($entity->animals as$animal): ?>
+		<?php foreach($entity->animals as $animal): ?>
 			<li style="list-style-type: square">
 				<button class="xhr animal show" _id="<?= $animal->puce; ?>">
 					<?= $animal->name; ?>

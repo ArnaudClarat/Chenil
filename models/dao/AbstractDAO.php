@@ -38,7 +38,7 @@ abstract class AbstractDAO implements DAOInterface {
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $this->createAll($results);
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }
@@ -51,7 +51,7 @@ abstract class AbstractDAO implements DAOInterface {
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $this->createAll($results);
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }
@@ -67,7 +67,7 @@ abstract class AbstractDAO implements DAOInterface {
             }
             return false;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }    
@@ -117,7 +117,7 @@ abstract class AbstractDAO implements DAOInterface {
             }
             return false;            
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }
@@ -127,7 +127,7 @@ abstract class AbstractDAO implements DAOInterface {
             $statement = $this->db->prepare("INSERT INTO {$table} ({$key}, {$foreign_key}) VALUES (?, ?)");
             return $this->insert($statement, [$entity->id, $foreign->id]);
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }
@@ -153,7 +153,7 @@ abstract class AbstractDAO implements DAOInterface {
             $statement = $this->db->prepare("DELETE FROM {$table} WHERE {$key} = ?");
             return $this->insert($statement, [$entity->id]);
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }
@@ -165,7 +165,7 @@ abstract class AbstractDAO implements DAOInterface {
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             return true;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            var_dump($e->getMessage());
             return false;
         }
     }

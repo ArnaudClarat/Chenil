@@ -25,19 +25,21 @@ DROP TABLE IF EXISTS `races`;
 CREATE TABLE `races` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  `specie_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`specie_id`) REFERENCES species(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `races`
 --
 
-INSERT INTO `races` (`id`, `name`) VALUES
-(1, 'Labrador'),
-(2, 'Border Collie'),
-(3, 'Terre Neuve'),
-(4, 'Maincoon'),
-(5, 'Chat de goutière');
+INSERT INTO `races` (`id`, `name`, `specie_id`) VALUES
+(1, 'Labrador', 1),
+(2, 'Border Collie', 1),
+(3, 'Terre Neuve', 1),
+(4, 'Maincoon', 2),
+(5, 'Chat de goutière', 2);
 COMMIT;
 
 -- --------------------------------------------------------
@@ -60,7 +62,6 @@ CREATE TABLE `species` (
 INSERT INTO `species` (`id`, `name`) VALUES
 (1, 'Chien'),
 (2, 'Chat');
-COMMIT;
 
 -- -------------------------------------------------------
 
@@ -102,11 +103,9 @@ CREATE TABLE `animals` (
   `steril` tinyint(1) NOT NULL,
   `DOB` date NOT NULL,
   `owner_id` int(11) NOT NULL,
-  `specie_id` int(11) NOT NULL,
   `race_id` int(11) NOT NULL,
   PRIMARY KEY (`puce`),
   FOREIGN KEY (`race_id`) REFERENCES races(`id`),
-  FOREIGN KEY (`specie_id`) REFERENCES species(`id`),
   FOREIGN KEY (`owner_id`) REFERENCES owners(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -114,12 +113,12 @@ CREATE TABLE `animals` (
 -- Déchargement des données de la table `animals`
 --
 
-INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `owner_id`, `specie_id`, `race_id`) VALUES
-(1, 'Bubulle', 'F', 1, '2001-06-13', 1, 2, 5),
-(2, 'Rocco', 'M', 1, '2012-03-06', 2, 1, 2),
-(3, 'Sifredi', 'F', 0, '2015-08-29', 2, 1, 1),
-(4, 'Felix', 'M', 1, '2021-12-28', 3, 2, 4),
-(5, 'Rex', 'M', 1, '2005-11-25', 3, 1, 3);
+INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `owner_id`, `race_id`) VALUES
+(1, 'Bubulle', 'F', 1, '2001-06-13', 1, 5),
+(2, 'Rocco', 'M', 1, '2012-03-06', 2, 2),
+(3, 'Sifredi', 'F', 0, '2015-08-29', 2, 1),
+(4, 'Felix', 'M', 1, '2021-12-28', 3, 4),
+(5, 'Rex', 'M', 1, '2005-11-25', 3, 3);
 
 -- --------------------------------------------------------
 

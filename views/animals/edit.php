@@ -30,18 +30,18 @@
     </select>
 	<br>
 	<label for="specie">Espèce :</label>
-	<select name="specie">
+	<select name="specie" id="specie">
 		<?php foreach ($species as $specie) : ?>
             <option 
             	value="<?= $specie->id; ?>" 
-            	<?php if($entity->specie->id === $specie->id) {echo "selected";} ?>>
+            	<?php if($entity->race->specie->id === $specie->id) {echo "selected";} ?>>
                 <?= $specie->name; ?>
             </option>
         <?php endforeach; ?>
     </select>
 	<br>
 	<label for="race">Race :</label>
-    <select name="race">
+    <select name="race" id="race">
         <?php foreach ($races as $race) : ?>
             <option
             	value="<?= $race->id; ?>"

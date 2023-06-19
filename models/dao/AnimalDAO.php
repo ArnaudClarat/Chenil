@@ -15,7 +15,6 @@ class AnimalDAO extends AbstractDAO {
             $data['steril'],
             $data['DOB'],
             $data['owner_id'],
-            $data['specie_id'],
             $data['race_id']
         );
     }
@@ -29,8 +28,7 @@ class AnimalDAO extends AbstractDAO {
                     htmlspecialchars($animal->steril),
                     htmlspecialchars($animal->dob),
                     htmlspecialchars($animal->owner->id),
-                    htmlspecialchars($animal->race->id),
-                    htmlspecialchars($animal->specie->id)
+                    htmlspecialchars($animal->race->id)
                 ], $animal));
     }
 
@@ -44,7 +42,6 @@ class AnimalDAO extends AbstractDAO {
                     htmlspecialchars($animal->dob),
                     htmlspecialchars($animal->owner->id),
                     htmlspecialchars($animal->race->id),
-                    htmlspecialchars($animal->specie->id),
                     htmlspecialchars($animal->puce)
                 ], $pokemon);
     }

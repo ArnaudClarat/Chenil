@@ -29,7 +29,7 @@ class Router {
         ];
         
         //liste des actions autorisées
-        $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy"];
+        $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy", "where"];
         
         $this->analyze(); 
         //$this->debug();
@@ -55,6 +55,8 @@ class Router {
             $this->action = "show";
         } else if ($this->action == "edit" && $this->id) {
             $this->action = "edit";
+        } else if ($this->action == "where" && $this->id) {
+            $this->action = "where";
         } else if ($this->action == "store" && !empty($_POST)) {
             $this->action = "store";
         } else {
