@@ -57,6 +57,8 @@ class Router {
             $this->action = "edit";
         } else if ($this->action == "where" && $this->id) {
             $this->action = "where";
+        } else if ($this->action == "update" && !empty($_POST)) {
+            $this->action = "update";
         } else if ($this->action == "store" && !empty($_POST)) {
             $this->action = "store";
         } else {
