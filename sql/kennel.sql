@@ -23,9 +23,9 @@ use `kennel`;
 
 DROP TABLE IF EXISTS `races`;
 CREATE TABLE `races` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
-  `specie_id` int(11) NOT NULL,
+  `specie_id` int NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`specie_id`) REFERENCES species(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -50,7 +50,7 @@ COMMIT;
 
 DROP TABLE IF EXISTS `species`;
 CREATE TABLE `species` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -71,7 +71,7 @@ INSERT INTO `species` (`id`, `name`) VALUES
 
 DROP TABLE IF EXISTS `owners`;
 CREATE TABLE `owners` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `forename` varchar(20) NOT NULL,
   `DOB` date NOT NULL,
@@ -97,13 +97,13 @@ INSERT INTO `owners` (`id`, `name`, `forename`, `DOB`, `mail`, `tel`) VALUES
 
 DROP TABLE IF EXISTS `animals`;
 CREATE TABLE `animals` (
-  `puce` int(11) NOT NULL,
+  `puce` int NOT NULL,
   `name` varchar(64) NOT NULL,
   `sex` varchar(1) NOT NULL,
   `steril` tinyint(1) NOT NULL,
   `DOB` date NOT NULL,
-  `owner_id` int(11) NOT NULL,
-  `race_id` int(11) NOT NULL,
+  `owner_id` int NOT NULL,
+  `race_id` int NOT NULL,
   PRIMARY KEY (`puce`),
   FOREIGN KEY (`race_id`) REFERENCES races(`id`),
   FOREIGN KEY (`owner_id`) REFERENCES owners(`id`)
@@ -128,10 +128,10 @@ INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `owner_id`, `race
 
 DROP TABLE IF EXISTS `stay`;
 CREATE TABLE `stay` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `date_in` date NOT NULL,
   `date_out` date NOT NULL,
-  `animal_id` int(11) NOT NULL,
+  `animal_id` int NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`animal_id`) REFERENCES animals(`puce`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
