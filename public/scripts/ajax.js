@@ -33,17 +33,9 @@ $(document).ready(function() {
 	});
 
 	$('body').on('change', 'select#specie', function () {
-		$('select#race').find('option:selected').removeAttr('selected');
-		$.get("/races/"+$(this).find('option:selected').val()+"/where")
-		.done(function(result) {
-			result = JSON.parse(result);
-			$('select#race').find('option').attr('disabled', 'disabled');
-			for (let r in result) {				
-				$opt = $('select#race').find('option[value="'+result[r]+'"]');
- 				$opt.removeAttr('disabled');
- 			}			
-		})
-	})
+		var selectedSpecie = $(this).find('option:selected').val();
+		updateRaceOptions(selectedSpecie);
+	});
 
 	function show (entity, id) {
 		$.get("/"+entity+"/"+id)
@@ -59,10 +51,28 @@ $(document).ready(function() {
 		$.get("/"+entity+"/"+id+"/edit")
 		.done(function(result) {
 			$('.content').html(result);
+		    $('select#specie').each(function() {
+        	var selectedSpecie = $(this).find('option:selected').val();
+        	updateRaceOptions(selectedSpecie);
+    });
+
 		})
 		.fail(function(err) {
 			console.warn('error in edit', err);
 		})
 	}
-});
 
+    function updateRaceOptions(selectedSpecie) {
+    	console.log(selectedSpecie);
+		$.get("/races/"+selectedSpecie+"/where")
+		.done(function(result) {
+			console.log(result);
+			result = JSON.parse(result);
+			$('select#race').find('option').attr('disabled', 'disabled');
+			for (let r in result) {				
+				$opt = $('select#race').find('option[value="'+result[r]+'"]');
+ 				$opt.removeAttr('disabled');
+			};
+		});
+    };
+});
