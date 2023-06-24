@@ -40,7 +40,7 @@ abstract class AbstractController implements ControllerInterface {
         return include "../views/{$this->folder}/store.php";
     }
 
-    public function update ($data) {
+    public function update ($id, $data) {
         $entity = $this->entity_class::find($data["id"]);
         if ($entity) {
             $entity->name = $data["name"] ? $data["name"] : $entity->name;

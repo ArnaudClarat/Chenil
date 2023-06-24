@@ -1,7 +1,6 @@
 <h2><?= $entity->name; ?></h2>
-<form method="POST" action="/animals/update">
-	<input type="hidden" name="puce" value="<?= $entity->puce; ?>">
-	
+<form method="POST">
+	<input type="hidden" name="id" value="<?= $entity->id; ?>">
 	<label for="name">Nom :</label>
 	<input type="text" name="name" value="<?= $entity->name; ?>" placeholder="<?= $entity->name; ?>">
 	<br>
@@ -51,5 +50,5 @@
         <?php endforeach; ?>
     </select>
 	<br>
-	<button type="submit">Enregistrer</button>
+	<button class="xhr animal update" _id="<?= $entity->id; ?>">Enregistrer</button>
 </form>

@@ -32,18 +32,19 @@ class AnimalDAO extends AbstractDAO {
                 ], $animal));
     }
 
-    public function update($pokemon) {
+    public function update($animal) {
         return parent::insert(
             $this->db->prepare(
-                "UPDATE {$this->table} SET (name, sex, steril, DOB, owner_id, race_id, specie_id) = (?, ?, ?, ?, ?, ?, ?) WHERE puce = ?"), [
+                "UPDATE {$this->table} SET name=?, sex=?, steril=?, DOB=?, owner_id=?, race_id=? WHERE puce=?"),
+                [
                     htmlspecialchars($animal->name),
                     htmlspecialchars($animal->sex),
                     htmlspecialchars($animal->steril),
                     htmlspecialchars($animal->dob),
                     htmlspecialchars($animal->owner->id),
                     htmlspecialchars($animal->race->id),
-                    htmlspecialchars($animal->puce)
-                ], $pokemon);
+                    htmlspecialchars($animal->id)
+                ], $animal);
     }
 
     //Récupération d'un animal par son numéro de puce

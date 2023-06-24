@@ -1,7 +1,7 @@
 <?php
 
 class Animal extends AbstractEntity {
-    protected $puce;
+    protected $id;
     protected $name;
     protected $sex;
     protected $steril;
@@ -10,8 +10,8 @@ class Animal extends AbstractEntity {
     protected $race;
     protected static $dao = "AnimalDAO";
 
-    public function __construct ($puce, $name, $sex, $steril, $dob, $owner, $race) {
-        $this->puce = $puce;
+    public function __construct ($id, $name, $sex, $steril, $dob, $owner, $race) {
+        $this->id = $id;
         $this->name = $name;
         $this->sex = $sex;
         $this->steril = $steril;

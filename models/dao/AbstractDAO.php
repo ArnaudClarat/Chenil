@@ -97,6 +97,7 @@ abstract class AbstractDAO implements DAOInterface {
             }
             return $entity;
         } catch (PDOException $exception) {
+            var_dump($statement->debugDumpParams());
             var_dump($exception);
             return false;
         }

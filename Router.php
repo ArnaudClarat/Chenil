@@ -11,6 +11,7 @@ class Router {
     private $action = false;
     private $actions;
     private $id = false;
+    private $logfile = 'router.log';
     
     public function __construct ($url) {
         $this->url = $url;
@@ -32,7 +33,7 @@ class Router {
         $this->actions = ["list", "show", "create", "store", "edit", "update", "destroy", "where"];
         
         $this->analyze(); 
-        //$this->debug();
+        //$this->debug($this->data);
         $this->run();
     }
     
@@ -122,9 +123,10 @@ class Router {
         return $this->controller->{$this->action}($this->id, $this->data);
     }
     
-    private function debug () {
+    private function debug ($data) {
         var_dump($this->controller, $this->id, $this->action);
+        $content = date('Y-m-d H:i:s').' - '.$this->controller.', '.$this->id.', '.$this->action.PHP_EOL;    
+        file_put_contents($this->logfile, $content, FILE_APPEND);
+        var_dump($data);
     }
-    
-    
 }

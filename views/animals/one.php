@@ -1,6 +1,6 @@
 <h2><?= $entity->name; ?></h2>
 <ul>
-	<li>Numéro de puce : <?= $entity->puce; ?></li>
+	<li>Numéro de puce : <?= $entity->id; ?></li>
 	<li>Sexe : <?= $entity->sex; ?></li>
 	<li>
 		Stérilisé ? 

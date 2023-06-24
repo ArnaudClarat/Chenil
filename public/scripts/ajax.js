@@ -21,15 +21,22 @@ $(document).ready(function() {
 				break;
 		}
 
-
-		if ($(this).hasClass('edit')) {
-			return mod(entity, id);
-		} else if ($(this).hasClass('create')) {
-			return create(entity); 
-		} else if ($(this).hasClass('show')) {
-			return show(entity, id);
+		switch (true) {
+			case $(this).hasClass('edit'):
+				return mod(entity, id);
+				break;
+			case $(this).hasClass('create'):
+				return create(entity);
+				break;
+			case $(this).hasClass('show'):
+				return show(entity, id);
+				break;
+			case $(this).hasClass('update'):
+				return update(entity, id);
+				break;
+			default:
+				return destroy(entity, id);
 		}
-		return destroy(entity, id); 
 	});
 
 	$('body').on('change', 'select#specie', function () {
@@ -52,10 +59,22 @@ $(document).ready(function() {
 		.done(function(result) {
 			$('.content').html(result);
 		    $('select#specie').each(function() {
-        	var selectedSpecie = $(this).find('option:selected').val();
-        	updateRaceOptions(selectedSpecie);
-    });
+        		var selectedSpecie = $(this).find('option:selected').val();
+        		updateRaceOptions(selectedSpecie);
+    		});
+		})
+		.fail(function(err) {
+			console.warn('error in edit', err);
+		})
+	}
 
+	function update(entity, id) {
+		var data = $('form').serialize();
+		console.log(data);
+		$.post("/"+entity+"/"+id+"/update", data)
+		.done(function(result) {
+			$('.content').html(result);
+			return;
 		})
 		.fail(function(err) {
 			console.warn('error in edit', err);
@@ -63,10 +82,8 @@ $(document).ready(function() {
 	}
 
     function updateRaceOptions(selectedSpecie) {
-    	console.log(selectedSpecie);
 		$.get("/races/"+selectedSpecie+"/where")
 		.done(function(result) {
-			console.log(result);
 			result = JSON.parse(result);
 			$('select#race').find('option').attr('disabled', 'disabled');
 			for (let r in result) {				
@@ -76,3 +93,4 @@ $(document).ready(function() {
 		});
     };
 });
+

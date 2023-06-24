@@ -6,6 +6,6 @@ interface ControllerInterface {
 	public function create ();
 	public function edit ($id);
 	public function store ($data);
-	public function update ($data);
+	public function update ($id, $data);
 	public function destroy($id);
 }
