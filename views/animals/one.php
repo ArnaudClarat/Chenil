@@ -30,3 +30,5 @@
 		</button>
 	</li>
 </ul>
+<button class="xhr animal edit" _id="<?= $entity->id; ?>">Edit</button>
+<button class="xhr animal delete" _id="<?= $entity->id; ?>">Delete</button>
