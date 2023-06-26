@@ -77,4 +77,8 @@ abstract class AbstractEntity implements EntityInterface{
     public static function first ($attr, $value) {
         return (new static::$dao)->first($attr, $value);
     }
+
+    public static function ids () {
+        return (new static::$dao)->ids();
+    }
 }

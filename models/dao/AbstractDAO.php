@@ -43,6 +43,19 @@ abstract class AbstractDAO implements DAOInterface {
         }
     }
 
+    //Récupération de toutes les ids des entités
+    public function ids() {
+        try {
+            $statement = $this->db->prepare("SELECT id FROM {$this->table}");
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            var_dump($results);
+        } catch (PDOException $e) {
+            var_dump($e->getMessage());
+            return false;
+        }
+    }
+
     //Récupération de toutes les entités respectant $attr == $value
     public function fetchWhere ($attr, $value) {
         try {

@@ -34,4 +34,25 @@ class AnimalController extends AbstractController {
         return include "../views/{$this->folder}/notfound.php";
     }
 
+    public function create () {
+        $owners = Owner::all();
+        $species = Specie::all();
+        $races = Race::all();
+        return include "../views/{$this->folder}/create.php";
+    }
+
+    public function store ($data) {
+        var_dump($data);
+        $puces = Animal::ids();
+        var_dump($puces);
+        $race = Race::first('id', $data['race']);
+        if (!in_array($data['id'], $puces)) {
+            if ($data['specie'] == $race->specie->id) {
+                var_dump("coucou");
+                return;
+            }
+        }
+        var_dump("pas coucou");
+        return;
+    }
 }

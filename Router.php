@@ -62,6 +62,8 @@ class Router {
             $this->action = "update";
         } else if ($this->action == "store" && !empty($_POST)) {
             $this->action = "store";
+        } else if ($this->action == "create") {
+            $this->action = "create";
         } else {
             $this->action = "list";
         }

@@ -34,6 +34,9 @@ $(document).ready(function() {
 			case $(this).hasClass('update'):
 				return update(entity, id);
 				break;
+			case $(this).hasClass('store'):
+				return store(entity);
+				break;
 			default:
 				return destroy(entity, id);
 		}
@@ -70,16 +73,39 @@ $(document).ready(function() {
 
 	function update(entity, id) {
 		var data = $('form').serialize();
-		console.log(data);
 		$.post("/"+entity+"/"+id+"/update", data)
 		.done(function(result) {
 			$('.content').html(result);
-			return;
 		})
 		.fail(function(err) {
 			console.warn('error in edit', err);
 		})
 	}
+
+	function create(entity) {
+		$.get("/"+entity+"/create")
+		.done(function(result) {
+			$('.content').html(result);
+			$('select#specie').each(function() {
+        		var selectedSpecie = $(this).find('option:selected').val();
+        		updateRaceOptions(selectedSpecie);
+    		});
+		})
+		.fail(function(err) {
+			console.warn('error in edit', err);
+		})
+	}
+
+    function store(entity) {
+		var data = $('form').serialize();
+    	$.post("/"+entity+"/store", data)
+    	.done(function(result) {
+    		$('.content').html(result);
+    	})
+    	.fail(function(err) {
+    		console.warn('error in edit', err);
+    	})
+    }
 
     function updateRaceOptions(selectedSpecie) {
 		$.get("/races/"+selectedSpecie+"/where")

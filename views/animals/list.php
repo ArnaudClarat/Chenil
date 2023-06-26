@@ -24,4 +24,5 @@
 		        <?php endforeach; ?>
 		    </tbody>
 		</table>
+<button class="xhr animal create">Add a new animal</button>
 <?php include('../views/layout/footer.php'); ?>
