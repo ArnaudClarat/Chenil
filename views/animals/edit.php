@@ -19,10 +19,20 @@
 	<label for="dob">Date de naissance :</label>
 	<input type="date" name="dob" value="<?= $entity->dob; ?>" placeholder="<?= $entity->dob; ?>">
 	<br>
+	<label for="parent">Parent :</label>
+	<select name="parent">
+		<option value="0">Inconnu</option>
+		<?php foreach ($animals as $animal) : ?>
+            <option value="<?= $animal->id; ?>" <?= ($entity->parent->id === $animal->id) ? 'selected' : ''; ?>>
+                <?= $animal->name; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <br>
 	<label for="owner">Propriétaire :</label>
     <select name="owner">
         <?php foreach ($owners as $owner) : ?>
-            <option value="<?= $owner->id; ?>" <?= ($entity->owner_id === $owner->id) ? 'selected' : ''; ?>>
+            <option value="<?= $owner->id; ?>" <?= ($entity->owner->id === $owner->id) ? 'selected' : ''; ?>>
                 <?= $owner->name.' '.$owner->forename; ?>
             </option>
         <?php endforeach; ?>

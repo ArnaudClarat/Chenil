@@ -21,6 +21,16 @@
 	<label for="dob">Date de naissance :</label>
 	<input type="date" name="dob">
 	<br>
+	<label for="parent">Parent :</label>
+	<select name="parent" id="parent">
+		<option value="0">Inconnu</option>
+		<?php foreach ($animals as $animal) : ?>
+			<option value="<?= $animal->id ?>">
+				<?= $animal->name; ?>
+			</option>
+		<?php endforeach; ?>		
+	</select>
+	<br>
 	<label for="owner">Propriétaire :</label>
     <select name="owner">
         <?php foreach ($owners as $owner) : ?>

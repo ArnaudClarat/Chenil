@@ -30,5 +30,17 @@
 		</button>
 	</li>
 </ul>
+<h4>Parent(s) :</h4>
+<ul>
+	<?php foreach($parents as $parent): ?>
+		<li><button class="xhr animal show" _id="<?= $parent->id; ?>"><?= $parent->name; ?></button></li>
+	<?php endforeach; ?>
+</ul>
+<h4>Enfant(s)</h4>
+<ul>
+	<?php foreach($childs as $child): ?>
+		<li><button class="xhr animal show" _id="<?= $child->id; ?>"><?= $child->name; ?></button></li>
+	<?php endforeach; ?>
+</ul>
 <button class="xhr animal edit" _id="<?= $entity->id; ?>">Edit</button>
 <button class="xhr animal delete" _id="<?= $entity->id; ?>">Delete</button>

@@ -14,6 +14,7 @@ class AnimalDAO extends AbstractDAO {
             $data['sex'],
             $data['steril'],
             $data['DOB'],
+            $data['parent_id'],
             $data['owner_id'],
             $data['race_id']
         );
@@ -22,11 +23,12 @@ class AnimalDAO extends AbstractDAO {
     function store ($animal) {
         return parent::insert(
             $this->db->prepare(
-                "INSERT INTO {$this->table} (name, sex, steril, DOB, owner_id, race_id, specie_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+                "INSERT INTO {$this->table} (name, sex, steril, DOB, parent_id, owner_id, race_id, specie_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
                     htmlspecialchars($animal->name),
                     htmlspecialchars($animal->sex),
                     htmlspecialchars($animal->steril),
                     htmlspecialchars($animal->dob),
+                    htmlspecialchars($animal->parent->id),
                     htmlspecialchars($animal->owner->id),
                     htmlspecialchars($animal->race->id)
                 ], $animal));
@@ -35,12 +37,13 @@ class AnimalDAO extends AbstractDAO {
     public function update($animal) {
         return parent::insert(
             $this->db->prepare(
-                "UPDATE {$this->table} SET name=?, sex=?, steril=?, DOB=?, owner_id=?, race_id=? WHERE puce=?"),
+                "UPDATE {$this->table} SET name=?, sex=?, steril=?, DOB=?, parent_id=? owner_id=?, race_id=? WHERE puce=?"),
                 [
                     htmlspecialchars($animal->name),
                     htmlspecialchars($animal->sex),
                     htmlspecialchars($animal->steril),
                     htmlspecialchars($animal->dob),
+                    htmlspecialchars($animal->parent->id),
                     htmlspecialchars($animal->owner->id),
                     htmlspecialchars($animal->race->id),
                     htmlspecialchars($animal->id)

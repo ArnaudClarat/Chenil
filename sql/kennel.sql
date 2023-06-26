@@ -102,23 +102,25 @@ CREATE TABLE `animals` (
   `sex` varchar(1) NOT NULL,
   `steril` tinyint(1) NOT NULL,
   `DOB` date NOT NULL,
+  `parent_id` int NOT NULL,
   `owner_id` int NOT NULL,
   `race_id` int NOT NULL,
   PRIMARY KEY (`puce`),
-  FOREIGN KEY (`race_id`) REFERENCES races(`id`),
-  FOREIGN KEY (`owner_id`) REFERENCES owners(`id`)
+  FOREIGN KEY (`parent_id`) REFERENCES animals(`id`),
+  FOREIGN KEY (`owner_id`) REFERENCES owners(`id`),
+  FOREIGN KEY (`race_id`) REFERENCES races(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `animals`
 --
 
-INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `owner_id`, `race_id`) VALUES
-(1, 'Bubulle', 'F', 1, '2001-06-13', 1, 5),
-(2, 'Rocco', 'M', 1, '2012-03-06', 2, 2),
-(3, 'Sifredi', 'F', 0, '2015-08-29', 2, 1),
-(4, 'Felix', 'M', 1, '2021-12-28', 3, 4),
-(5, 'Rex', 'M', 1, '2005-11-25', 3, 3);
+INSERT INTO `animals` (`puce`, `name`, `sex`, `steril`, `DOB`, `parent_id`, `owner_id`, `race_id`) VALUES
+(1, 'Bubulle', 'F', 1, '2001-06-13', 0, 1, 5),
+(2, 'Rocco', 'M', 1, '2012-03-06', 5, 2, 2),
+(3, 'Sifredi', 'F', 0, '2015-08-29', 2, 2, 1),
+(4, 'Felix', 'M', 1, '2021-12-28', 1, 3, 4),
+(5, 'Rex', 'M', 1, '2005-11-25', 0, 3, 3);
 
 -- --------------------------------------------------------
 
